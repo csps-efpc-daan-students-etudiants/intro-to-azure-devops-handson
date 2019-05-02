@@ -55,7 +55,12 @@ export default class Home extends Vue {
 
   public async mounted() {
     try {
-      const result = await Api().get('/tasks');
+      //const result = await Api().get('/tasks');
+      const result = { data : [
+        { uniqueid : "1", name : "Wake Up", completed : true },
+        { uniqueid : "2", name : "Go for a walk", completed : true },
+        { uniqueid : "3", name : "Talk to Frog", completed : true }
+      ]};
 
       result.data.forEach((i: Task) => {
         this.tasks.push({
@@ -79,7 +84,7 @@ export default class Home extends Vue {
     };
 
     try {
-      const response = await Api().post('/task', task);
+//      const response = await Api().post('/task', task);
       this.tasks.push(task);
     } catch (reason) {
       throw reason;
@@ -89,7 +94,7 @@ export default class Home extends Vue {
 
   public async toggleTask(id: string, state: boolean) {
     try {
-      const response = await Api().post('/toggleTask', { id, state});
+ //     const response = await Api().post('/toggleTask', { id, state});
       this.tasks.find((i: Task) => i.uniqueid === id)!.completed = state;
     } catch (reason) {
       throw reason;
